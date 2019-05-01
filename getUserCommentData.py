@@ -19,11 +19,11 @@ comments = get_comments(username, password, amountOfComments, usernameOfPage)
 createCSVFile(comments, directoryName) # Create CSV File
 
 # ##### Graph Top Commenters ######
-# topNumberOfCommenters = 10
-# commenters = getCommenters(comments, topNumberOfCommenters)
-# # Gets a list of tuples Example [('username', 'number of commenters')]
-# fileName = directoryName + '/' + 'topCommenters'
-# generateHist(commenters, fileName)
+topNumberOfCommenters = 10
+commenters = getCommenters(comments, topNumberOfCommenters)
+# Gets a list of tuples Example [('username', 'number of commenters')]
+fileName = directoryName + '/' + 'topCommenters'
+generateHist(commenters, fileName)
 
 # ##### Find Sentiment ######
 sentimentAndDate = getTextSentiment(comments)

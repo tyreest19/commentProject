@@ -3,7 +3,6 @@ from matplotlib.pyplot import figure
 
 def getCommenters(commentList, topNumberOfCommenters):
     res = []
-
     for i in commentList:
         username = i['username']
         x = 0
@@ -32,6 +31,11 @@ def generateHist(listTuples, fileName):
     for i in range(len(listTuples)):
       word.append(listTuples[i][0])
       frequency.append(listTuples[i][1])
+    plt.xlabel('Usenames',  fontsize=15, labelpad=20)
+    plt.ylabel('Amount Of Comments',  fontsize=15, labelpad=20)
+    plt.title('Top Commenters', fontsize=20)
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=14)
     plt.bar(word, frequency, color='r')
     plt.savefig(fileName)
 

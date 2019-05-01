@@ -1,4 +1,6 @@
 import matplotlib
+import datetime as dt
+import matplotlib.dates as md
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -16,10 +18,19 @@ def createSentimentGraph(sentimentAndDate, fileName):
     figure(num=None, figsize=(20, 20), dpi=80, facecolor='w', edgecolor='k')
     utcDates = []
     sentimentScore = []
-    print(len(sentimentAndDate))
     for i in range(len(sentimentAndDate)):
       utcDates.append(sentimentAndDate[i][1])
       sentimentScore.append(sentimentAndDate[i][0])
+    plt.subplots_adjust(bottom=0.2)
+    plt.xticks( rotation=25 )
+    ax=plt.gca()
+    xfmt = md.DateFormatter('%Y-%m-%d %H:%M:%S')
+    ax.xaxis.set_major_formatter(xfmt)
+    plt.xlabel('UTC Date Time', fontsize=15, labelpad=20)
+    plt.ylabel('Sentiment Score', fontsize=15, labelpad=20)
+    plt.title('Radicalization Chart', fontsize=20)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
     plt.plot(utcDates, sentimentScore)
     plt.savefig(fileName)
 
