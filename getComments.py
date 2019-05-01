@@ -1,4 +1,3 @@
-
 import csv
 import time
 from InstagramAPI import InstagramAPI
@@ -18,7 +17,6 @@ def get_comments(username, password, amount_of_comments, searched_user):
     media = []
     API.getUserFeed(user_id, maxid=max_id)
     media_ids = [item['id'] for item in API.LastJson.get('items')]
-    print(len(media_ids))
     for media_id in media_ids:
         while has_more_comments:
             _ = API.getMediaComments(media_id, max_id='')

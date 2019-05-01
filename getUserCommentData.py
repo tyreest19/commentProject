@@ -10,7 +10,7 @@ from topCommenters import generateHist
 
 username = 'x_tyree'
 password = 'Imorehouse19st'
-amountOfComments = 100
+amountOfComments = 1000
 usernameOfPage = input('Please input instagram name you are searcing for'
                         'without the \'@\' sign: ')
 currentDT = datetime.now()
