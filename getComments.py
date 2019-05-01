@@ -56,20 +56,23 @@ def get_comments(username, password, amount_of_comments, searched_user):
     comments = [
                 {   'user_id': comment['user_id'],
                     'username': comment['user']['username'],
-                    'text': comment['text']
+                    'text': comment['text'],
+                    'dateUTC': datetime.fromtimestamp(int(comment['created_at_utc']))
                 }
                 for comment in comments
                 ]
     return comments
 
-def createCSVFile(listOfDicts):
+def createCSVFile(listOfDicts, directoryName):
     keys = listOfDicts[0].keys()
-    with open('comments.csv', 'w', encoding='utf-8') as output_file:
+    fileName = directoryName + '/' + 'comments.csv'
+    with open(fileName, 'w', encoding='utf-8') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(listOfDicts)
 
 if __name__ == '__main__':
-    comments = get_comments('x_tyree', 'Imorehouse19st', 1000, 'barackobama')
+
+    comments = get_comments('x_tyree', 'Imorehouse19st', 100, 'barackobama')
     print(comments)
     createCSVFile(comments)
