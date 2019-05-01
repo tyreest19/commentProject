@@ -62,6 +62,31 @@ def createSentimentGraph(sentimentAndDate, fileName):
     plt.plot(utcDates, sentimentScore)
     plt.savefig(fileName)
 
+def createSentimentPieGraph(sentimentAndDate, fileName):
+    figure(num=None, figsize=(20, 20), dpi=80, facecolor='w', edgecolor='k')
+    positive = 0
+    negative = 0
+    neutral = 0
+    for i in range(len(sentimentAndDate)):
+      sentimentScore = sentimentAndDate[i][0]
+      if sentimentScore > 0.0:
+          positive += 1
+      elif sentimentScore < 0.0:
+          negative += 1
+      elif sentimentScore == 0.0:
+          neutral += 1
+    positive_percent = positive/len(sentimentAndDate)
+    neutral_percent = neutral/len(sentimentAndDate)
+    negative_percent = negative/len(sentimentAndDate)
+    labels = ['positive', 'neutral', 'negative']
+    scoreGroups = [positive_percent, neutral_percent, negative_percent]
+    fig1, ax1 = plt.subplots()
+    ax1.pie(scoreGroups, labels=labels, autopct='%1.1f%%', shadow=True,
+            startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.title('Comments Sentiment Score Divided by Percentage')
+    plt.savefig(fileName)
+
 def getAverageSentiment(comments):
     """
             Description:

@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from findSentiment import createSentimentGraph
+from findSentiment import createSentimentPieGraph
 from findSentiment import getTextSentiment
 from frequentWords import findCommentFrquency
 from getComments import get_comments
@@ -10,7 +11,7 @@ from topCommenters import generateHist
 
 username = 'x_tyree'
 password = 'Imorehouse19st'
-amountOfComments = 1000
+amountOfComments = 100
 usernameOfPage = input('Please input instagram name you are searcing for'
                         'without the \'@\' sign: ')
 currentDT = datetime.now()
@@ -33,6 +34,8 @@ generateHist(commenters, fileName)
 sentimentAndDate = getTextSentiment(comments)
 fileName = directoryName + '/' + 'radicalizationChart'
 createSentimentGraph(sentimentAndDate, fileName)
+fileName = directoryName + '/' + 'radicalizationPieChart'
+createSentimentPieGraph(sentimentAndDate,fileName)
 
 # ##### Graph Top Commenters ######
 commentsText = [comment['text'] for comment in comments]
