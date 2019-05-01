@@ -8,6 +8,21 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyser = SentimentIntensityAnalyzer()
 
 def getTextSentiment(comments):
+    """
+            Description:
+                Takes a dictionary containing commnets and other data, then
+                returns a tuple of the comments sentiment score and dattime object
+            Arguments:
+                sentimentAndDate: a list of tuples.
+
+            Returns:
+                A list of tuples contains sentiment score and datetime object
+                Example:
+                    [
+                        (0.567, 2019-05-01 15:55:44),
+                        (-0.567, 2019-05-01 15:55:44)
+                    ]
+    """
     sentimentAndDate = []
     for comment in comments:
         compoundScore = analyser.polarity_scores(comment['text'])['compound']
@@ -15,6 +30,19 @@ def getTextSentiment(comments):
     return sentimentAndDate
 
 def createSentimentGraph(sentimentAndDate, fileName):
+    """
+            Description:
+                Takes a list of tuples containing Sentiment Score and datetime
+                object, then creates a graph.
+
+            Arguments:
+                sentimentAndDate: a list of tuples.
+                    Example:
+                        [
+                            (0.567, 2019-05-01 15:55:44),
+                            (-0.567, 2019-05-01 15:55:44)
+                        ]
+    """
     figure(num=None, figsize=(20, 20), dpi=80, facecolor='w', edgecolor='k')
     utcDates = []
     sentimentScore = []
